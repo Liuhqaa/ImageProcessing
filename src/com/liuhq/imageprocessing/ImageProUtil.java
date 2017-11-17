@@ -40,6 +40,7 @@ public class ImageProUtil {
         }  
         return pixels;  
     }  
+
     
     //颜色变化
     public static int[] changeColor_5(int[] pixels,int widht,int height) {
@@ -121,7 +122,7 @@ public class ImageProUtil {
     }  
     
     //颜色变化
-    public static int[] getBound_5(int[] pixels,int widht,int height,int errorVale) {
+    public static int[] getBound_5(int[] pixels,int widht,int height,int errorValue) {
         int grey,cGrey,topIndex,centerIndex,bottomInde;
        int maxy = height -1;
         int maxx = widht -1;
@@ -132,23 +133,22 @@ public class ImageProUtil {
             centerIndex = widht * y;
             bottomInde =  widht * (y+1);
             for (int x = 1; x < maxx; x++) { 
-                TCColor = pixels[topIndex + 1];  
+                TCColor = pixels[topIndex++ + 1];  
                 LColor = pixels[centerIndex];  
                 CColor = pixels[centerIndex + 1];  
                 RColor = pixels[centerIndex++ + 2]; 
-                BCColor = pixels[bottomInde + 1];  
+                BCColor = pixels[bottomInde++ + 1];  
                 cGrey = CColor & 0xff;
                 
-               if(Math.abs(TCColor & 0xff - cGrey) > errorVale
-                       || Math.abs(LColor & 0xff - cGrey) > errorVale
-                       || Math.abs(RColor & 0xff - cGrey) > errorVale
-                       || Math.abs(BCColor & 0xff - cGrey) > errorVale)
+               if(Math.abs(TCColor & 0xff - cGrey) > errorValue
+                       || Math.abs(LColor & 0xff - cGrey) > errorValue
+                       || Math.abs(RColor & 0xff - cGrey) > errorValue
+                       || Math.abs(BCColor & 0xff - cGrey) > errorValue)
                {
-                   grey = 255;
+                   grey = cGrey;
                }else{
-                   grey = 0;
+                   grey = 255;
                }
-                grey = 255 - grey;
                 outPixels[centerIndex] = grey << 16 | grey << 8 | grey | (CColor & 0xff000000) ;  
             }
         }  
@@ -156,7 +156,7 @@ public class ImageProUtil {
     }  
     
     //颜色变化
-    public static int[] getBound__9(int[] pixels,int widht,int height,int errorValue) {
+    public static int[] getBound_9(int[] pixels,int widht,int height,int errorValue) {
         int grey,cGrey,topIndex,centerIndex,bottomInde;
        int maxy = height -1;
         int maxx = widht -1;
@@ -181,16 +181,19 @@ public class ImageProUtil {
                 
                 cGrey = CColor & 0xff;
                 
-                grey = Math.abs(TCColor & 0xff - cGrey)
-                        + Math.abs(LColor & 0xff - cGrey)
-                        + Math.abs(RColor & 0xff - cGrey)
-                        + Math.abs(BCColor & 0xff - cGrey)
-                        + Math.abs(TLColor & 0xff - cGrey)
-                        + Math.abs(TRColor & 0xff - cGrey)
-                        + Math.abs(BLColor & 0xff - cGrey)
-                        + Math.abs(BRColor & 0xff - cGrey)
-                        ;
-                grey = 255 - grey;
+                if(Math.abs(TCColor & 0xff - cGrey) > errorValue
+                        || Math.abs(LColor & 0xff - cGrey) > errorValue
+                        || Math.abs(RColor & 0xff - cGrey) > errorValue
+                        || Math.abs(BCColor & 0xff - cGrey) > errorValue
+                        || Math.abs(TLColor & 0xff - cGrey) > errorValue
+                        || Math.abs(TRColor & 0xff - cGrey) > errorValue
+                        || Math.abs(BLColor & 0xff - cGrey) > errorValue
+                        || Math.abs(BRColor & 0xff - cGrey) > errorValue)
+                {
+                    grey = cGrey;
+                }else{
+                    grey = 255;
+                }
                 outPixels[centerIndex] = grey << 16 | grey << 8 | grey | (CColor & 0xff000000) ;  
             }
         }  

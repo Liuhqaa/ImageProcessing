@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 	        
 //	        Bitmap srcBitMapB = BitmapFactory
 //	                .decodeResource(getResources(), R.drawable.ic_car);
-	        pixels = ImageProUtil.changeColor_5(pixels,width,height);  
+	        pixels = ImageProUtil.getBound_9(pixels,width,height,6);  
 	        imDest.setImageBitmap(Bitmap.createBitmap(pixels, width, height,  
 	                Config.ARGB_8888));
 	    }
