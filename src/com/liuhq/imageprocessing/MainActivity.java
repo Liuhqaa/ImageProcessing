@@ -3,11 +3,9 @@ package com.liuhq.imageprocessing;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
@@ -15,11 +13,11 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		initData();
+		setContentView(R.layout.activity_main_handwritten);
+//		initData();
 	}
-	
-	  private void initData()
+
+	private void initData()
 	    {
 	        ImageView imSrc = (ImageView)findViewById(R.id.im_src);
 	        ImageView imDest = (ImageView)findViewById(R.id.im_dest);
@@ -42,4 +40,5 @@ public class MainActivity extends Activity {
 	        imDest.setImageBitmap(Bitmap.createBitmap(pixels, width, height,  
 	                Config.ARGB_8888));
 	    }
+
 }
