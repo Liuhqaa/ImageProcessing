@@ -52,35 +52,35 @@ public class HandWrittenView extends View {
 //	    	path.lineTo((int)x, (int) y);
 //	    	line.addPoint((int)x,(int) y);
 //	    }
-	    
-	    double a = 100*density;
-	    double b = 300 *density;
-	    
-	    double x,y;
-	    x = y = a;
-		path.lineTo((int)x, (int) y);
-    	line.addPoint((int)x,(int) y);
-    	
-	    x = b;
-	    y = a;
-		path.lineTo((int)x, (int) y);
-    	line.addPoint((int)x,(int) y);
-    	
-	    x = y = b;
-		path.lineTo((int)x, (int) y);
-    	line.addPoint((int)x,(int) y);
-    	
-	    x = a;
-	    y = b;
-		path.lineTo((int)x, (int) y);
-    	line.addPoint((int)x,(int) y);
-    	
-	    x = y = a;
-		path.lineTo((int)x, (int) y);
-    	line.addPoint((int)x,(int) y);
-    	
-	    invalidate();
-	    recognitionNumber();
+//	    
+//	    double a = 100*density;
+//	    double b = 300 *density;
+//	    
+//	    double x,y;
+//	    x = y = a;
+//		path.lineTo((int)x, (int) y);
+//    	line.addPoint((int)x,(int) y);
+//    	
+//	    x = b;
+//	    y = a;
+//		path.lineTo((int)x, (int) y);
+//    	line.addPoint((int)x,(int) y);
+//    	
+//	    x = y = b;
+//		path.lineTo((int)x, (int) y);
+//    	line.addPoint((int)x,(int) y);
+//    	
+//	    x = a;
+//	    y = b;
+//		path.lineTo((int)x, (int) y);
+//    	line.addPoint((int)x,(int) y);
+//    	
+//	    x = y = a;
+//		path.lineTo((int)x, (int) y);
+//    	line.addPoint((int)x,(int) y);
+//    	
+//	    invalidate();
+//	    recognitionNumber();
 	}
 
 	@Override
