@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -37,6 +38,49 @@ public class HandWrittenView extends View {
 	    paint.setStrokeJoin(Paint.Join.ROUND);  
 	    paint.setStrokeCap(Paint.Cap.ROUND);
 	    paint.setStrokeWidth(STROKE_WIDTH * density); 
+	    
+//	    float R = 150 * density;
+//	    float offset = 180 * density;
+//	    int d = 5;
+//	    int size = 360/5;
+//	    
+//	    for(int i = 1; i <= size; i++ )
+//	    {
+//	    	double a = i * d * Math.PI/180;
+//	    	double y = offset + R * Math.sin(a);
+//	    	double x = offset + R * Math.cos(a);
+//	    	path.lineTo((int)x, (int) y);
+//	    	line.addPoint((int)x,(int) y);
+//	    }
+	    
+	    double a = 100*density;
+	    double b = 300 *density;
+	    
+	    double x,y;
+	    x = y = a;
+		path.lineTo((int)x, (int) y);
+    	line.addPoint((int)x,(int) y);
+    	
+	    x = b;
+	    y = a;
+		path.lineTo((int)x, (int) y);
+    	line.addPoint((int)x,(int) y);
+    	
+	    x = y = b;
+		path.lineTo((int)x, (int) y);
+    	line.addPoint((int)x,(int) y);
+    	
+	    x = a;
+	    y = b;
+		path.lineTo((int)x, (int) y);
+    	line.addPoint((int)x,(int) y);
+    	
+	    x = y = a;
+		path.lineTo((int)x, (int) y);
+    	line.addPoint((int)x,(int) y);
+    	
+	    invalidate();
+	    recognitionNumber();
 	}
 
 	@Override
@@ -96,6 +140,7 @@ public class HandWrittenView extends View {
 		{
 			str = str  + num + ",";
 		}
+		Log.i("TAG", "number = " + str);
 		Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
 	}
 

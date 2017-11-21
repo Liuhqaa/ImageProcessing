@@ -33,11 +33,11 @@ public class Lines {
 			} else if (dx == 0) {
 				degrees = 90;
 			} else {
-				degrees = 180 - (Math.atan(dy / dx) * 180 / Math.PI);
+				degrees = 180 + (Math.atan(dy / dx) * 180 / Math.PI);
 			}
 		} else if (dy < 0) {
 			if (dx > 0) {
-				degrees = 360 - (Math.atan(dy / dx) * 180 / Math.PI);
+				degrees = 360 + (Math.atan(dy / dx) * 180 / Math.PI);
 			} else if (dx == 0) {
 				degrees = 270;
 			} else {
