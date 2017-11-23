@@ -23,6 +23,7 @@ public class HandWrittenView extends View {
 	private Path path = new Path();
 	private final RectF dirtyRect = new RectF();
 	private Lines line = new Lines();
+	private float measureError;//´¥ÆÁ²âÁ¿Îó²î
 	
 	public HandWrittenView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -30,57 +31,16 @@ public class HandWrittenView extends View {
 	}
 
 	private void init() {
-		float density = getResources().getDisplayMetrics().density;
 		paint = new Paint();
 	    paint.setAntiAlias(true);  
 	    paint.setColor(Color.BLACK);  
 	    paint.setStyle(Paint.Style.STROKE);  
 	    paint.setStrokeJoin(Paint.Join.ROUND);  
 	    paint.setStrokeCap(Paint.Cap.ROUND);
-	    paint.setStrokeWidth(STROKE_WIDTH * density); 
+	    paint.setStrokeWidth(1); 
+	    this.measureError = 0;
 	    
-//	    float R = 150 * density;
-//	    float offset = 180 * density;
-//	    int d = 5;
-//	    int size = 360/5;
-//	    
-//	    for(int i = 1; i <= size; i++ )
-//	    {
-//	    	double a = i * d * Math.PI/180;
-//	    	double y = offset + R * Math.sin(a);
-//	    	double x = offset + R * Math.cos(a);
-//	    	path.lineTo((int)x, (int) y);
-//	    	line.addPoint((int)x,(int) y);
-//	    }
-//	    
-//	    double a = 100*density;
-//	    double b = 300 *density;
-//	    
-//	    double x,y;
-//	    x = y = a;
-//		path.lineTo((int)x, (int) y);
-//    	line.addPoint((int)x,(int) y);
-//    	
-//	    x = b;
-//	    y = a;
-//		path.lineTo((int)x, (int) y);
-//    	line.addPoint((int)x,(int) y);
-//    	
-//	    x = y = b;
-//		path.lineTo((int)x, (int) y);
-//    	line.addPoint((int)x,(int) y);
-//    	
-//	    x = a;
-//	    y = b;
-//		path.lineTo((int)x, (int) y);
-//    	line.addPoint((int)x,(int) y);
-//    	
-//	    x = y = a;
-//		path.lineTo((int)x, (int) y);
-//    	line.addPoint((int)x,(int) y);
-//    	
-//	    invalidate();
-//	    recognitionNumber();
+
 	}
 
 	@Override
@@ -92,6 +52,7 @@ public class HandWrittenView extends View {
 		case MotionEvent.ACTION_DOWN:
 			path.moveTo(eventX, eventY);
 			line.clear();
+			line.resetBorderRect((int)eventX,(int) eventY);
 			line.addPoint((int)eventX,(int) eventY);
 			return true; 
 		case MotionEvent.ACTION_MOVE:
@@ -102,9 +63,11 @@ public class HandWrittenView extends View {
 				float historicalY = event.getHistoricalY(i);
 				expandDirtyRect(historicalX, historicalY);
 				path.lineTo(historicalX, historicalY);
+				line.addPoint((int)historicalX,(int) historicalY);
 			}
 			path.lineTo(eventX, eventY);
 			line.addPoint((int)eventX,(int) eventY);
+			
 			break;
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_CANCEL:
@@ -115,6 +78,7 @@ public class HandWrittenView extends View {
 				float historicalY = event.getHistoricalY(i);
 				expandDirtyRect(historicalX, historicalY);
 				path.lineTo(historicalX, historicalY);
+				line.addPoint((int)historicalX,(int) historicalY);
 			}
 			path.lineTo(eventX, eventY);
 			line.addPoint((int)eventX,(int) eventY);
